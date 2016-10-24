@@ -34,6 +34,12 @@ class EmployeeTest < Minitest::Test
     assert_equal "Adam is hardworking and persistent.", employee.review, "review match"
   end
 
+  def test_employee_performance
+    employee = ::Employee.new(name: "Adam", email_address:"adam@gmail.com", phone_number: "202-555-1212", salary: 150000)
+    employee.satisfactory_performance = true
+    assert_equal true, employee.satisfactory_performance?, "performance match"
+  end
+
   def test_salary_raise
     employee = ::Employee.new(name: "Adam", email_address:"adam@gmail.com", phone_number: "202-555-1212", salary: 150000)
     employee.raise_salary(0.02)

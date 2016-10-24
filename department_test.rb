@@ -34,14 +34,16 @@ class DepartmentTest < Minitest::Test
   end
 
   def test_department_raise_salary_for_all
-    employee = ::Employee.new(name: "Adam", email_address:"adam@gmail.com", phone_number: "202-555-1212", salary: 150000)
-    employee2 = ::Employee.new(name: "Adam", email_address:"adam@gmail.com", phone_number: "202-555-1212", salary: 150000)
+    employee1 = ::Employee.new(name: "Adam", email_address:"adam@gmail.com", phone_number: "202-555-1212", salary: 150000)
+    employee1.satisfactory_performance = true
+    employee2 = ::Employee.new(name: "John", email_address:"john@gmail.com", phone_number: "202-555-1212", salary: 150000)
+    employee2.satisfactory_performance = false
     department = ::Department.new("Education")
-    department.add_employee(employee)
+    department.add_employee(employee1)
     department.add_employee(employee2)
-    department.raise_salary_for_all(0.02)
+    department.raise_salary_for_satisfactory_performance(6000)
 
-    assert_equal 306000, department.total_salary
+    assert_equal 156000, employee1.salary
   end
 
 end
